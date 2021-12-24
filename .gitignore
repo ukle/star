@@ -1,2 +1,4 @@
 # Project exclude paths
 /star-system/target/
+.idea
+*.iml
