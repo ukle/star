@@ -1,4 +1,4 @@
-package com.star.service;
+package me.star.service;
 
 /**
  * @author sida_zhou

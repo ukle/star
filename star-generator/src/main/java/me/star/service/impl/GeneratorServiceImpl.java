@@ -1,8 +1,8 @@
-package com.star.service.impl;
+package me.star.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.star.domain.vo.TableInfo;
-import com.star.service.GeneratorService;
+import me.star.domain.vo.TableInfo;
+import me.star.service.GeneratorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.star.utils.PageUtil;

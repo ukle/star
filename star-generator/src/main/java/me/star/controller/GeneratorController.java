@@ -1,7 +1,7 @@
-package com.star.controller;
+package me.star.controller;
 
 import cn.hutool.core.util.PageUtil;
-import com.star.service.GeneratorService;
+import me.star.service.GeneratorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

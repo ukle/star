@@ -48,3 +48,15 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+
+knife4j:
+  # 是否开启加强模式 true开启  false关闭
+  enable: true
+  setting:
+    # 是否开启调试功能  true开启  false关闭
+    enableDebug: true
+  basic:
+    # 是否开启认证功能  true开启  false关闭
+    enable: false
+    username: test
+    password: 123456
