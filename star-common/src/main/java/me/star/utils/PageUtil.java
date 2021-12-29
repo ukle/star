@@ -8,7 +8,7 @@ import java.util.Map;
  * @description
  * @date 2021/12/24
  */
-public class PageUtil {
+public class PageUtil extends cn.hutool.core.util.PageUtil {
 
     /**
      * 自定义分页

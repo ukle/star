@@ -1,19 +1,33 @@
 package me.star.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
-import me.star.domain.vo.TableInfo;
-import me.star.service.GeneratorService;
+import cn.hutool.core.util.ZipUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.star.domain.vo.ColumnInfo;
+import me.star.domain.vo.GenConfig;
+import me.star.domain.vo.TableInfo;
+import me.star.exception.BadRequestException;
+import me.star.repository.ColumnInfoRepository;
+import me.star.service.GeneratorService;
+import me.star.utils.FileUtil;
+import me.star.utils.GenUtil;
 import me.star.utils.PageUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author sida_zhou
@@ -27,6 +41,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 
     @PersistenceContext
     private EntityManager em;
+    private final ColumnInfoRepository columnInfoRepository;
 
     @Override
     public Object getTables(String name, int[] startEnd) {
@@ -51,5 +66,74 @@ public class GeneratorServiceImpl implements GeneratorService {
         queryCount.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
         Object totalElements = queryCount.getSingleResult();
         return PageUtil.toPage(tableInfos, totalElements);
+    }
+
+    @Override
+    public List<ColumnInfo> query(String tableName) {
+        // 使用预编译防止sql注入
+        String sql = "select column_name, is_nullable, data_type, column_comment, column_key, extra " +
+                "from information_schema.columns " +
+                "where table_name = ? and table_schema = (select database()) order by ordinal_position";
+        Query query = em.createNativeQuery(sql);
+        query.setParameter(1, tableName);
+        List result = query.getResultList();
+        List<ColumnInfo> columnInfos = new ArrayList<>();
+        for (Object obj : result) {
+            Object[] arr = (Object[]) obj;
+            columnInfos.add(
+                    new ColumnInfo(
+                            tableName,
+                            arr[0].toString(),
+                            "NO".equals(arr[1]),
+                            arr[2].toString(),
+                            ObjectUtil.isNotNull(arr[3]) ? arr[3].toString() : null,
+                            ObjectUtil.isNotNull(arr[4]) ? arr[4].toString() : null,
+                            ObjectUtil.isNotNull(arr[5]) ? arr[5].toString() : null)
+            );
+        }
+        return columnInfos;
+    }
+
+    @Override
+    public void save(List<ColumnInfo> columnInfos) {
+        columnInfoRepository.saveAll(columnInfos);
+    }
+
+    @Override
+    public void generator(GenConfig genConfig, List<ColumnInfo> columns) {
+        if (genConfig.getId() == null) {
+            throw new BadRequestException("请先配置生成器");
+        }
+        try {
+            GenUtil.generatorCode(columns, genConfig);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            throw new BadRequestException("生成失败，请手动处理已生成的文件");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Object> preview(GenConfig genConfig, List<ColumnInfo> columns) {
+        if (genConfig.getId() == null) {
+            throw new BadRequestException("请先配置生成器");
+        }
+        List<Map<String, Object>> genList = GenUtil.preview(columns, genConfig);
+        return new ResponseEntity<>(genList, HttpStatus.OK);
+    }
+
+    @Override
+    public void download(GenConfig genConfig, List<ColumnInfo> columns, HttpServletRequest request,
+                         HttpServletResponse response) {
+        if (genConfig.getId() == null) {
+            throw new BadRequestException("请先配置生成器");
+        }
+        try {
+            File file = new File(GenUtil.download(columns, genConfig));
+            String zipPath = file.getPath() + ".zip";
+            ZipUtil.zip(file.getPath(), zipPath);
+            FileUtil.downloadFile(request, response, new File(zipPath), true);
+        } catch (IOException e) {
+            throw new BadRequestException("打包失败");
+        }
     }
 }
