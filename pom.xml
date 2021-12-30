@@ -13,6 +13,7 @@
         <module>star-common</module>
         <module>star-system</module>
         <module>star-tools</module>
+        <module>star-memento</module>
     </modules>
 
     <name>STAR 自我管理</name>
