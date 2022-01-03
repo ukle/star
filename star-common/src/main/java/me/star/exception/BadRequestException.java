@@ -1,5 +1,6 @@
 package me.star.exception;
 
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
@@ -9,6 +10,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
  * @description 异常处理
  * @date 2021/12/29
  */
+@Data
 public class BadRequestException extends RuntimeException {
 
     private Integer status = BAD_REQUEST.value();
