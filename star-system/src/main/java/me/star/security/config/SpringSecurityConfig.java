@@ -3,10 +3,10 @@ package me.star.security.config;
 import lombok.RequiredArgsConstructor;
 import me.star.annotation.AnonymousAccess;
 import me.star.enums.RequestMethodEnum;
-import me.star.security.secrurity.JwtAccessDeniedHandler;
-import me.star.security.secrurity.JwtAuthenticationEntryPoint;
-import me.star.security.secrurity.TokenConfigurer;
-import me.star.security.secrurity.TokenProvider;
+import me.star.security.security.JwtAccessDeniedHandler;
+import me.star.security.security.JwtAuthenticationEntryPoint;
+import me.star.security.security.TokenConfigurer;
+import me.star.security.security.TokenProvider;
 import me.star.security.service.OnlineUserService;
 import me.star.security.service.UserCacheClean;
 import org.springframework.context.ApplicationContext;
@@ -99,6 +99,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 ).permitAll()
                 // swagger 文档
                 .antMatchers("/doc.html").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/*/api-docs").permitAll()
                 // 文件

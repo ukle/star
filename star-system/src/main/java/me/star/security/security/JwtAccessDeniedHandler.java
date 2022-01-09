@@ -1,4 +1,4 @@
-package me.star.security.secrurity;
+package me.star.security.security;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

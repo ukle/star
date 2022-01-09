@@ -1,4 +1,4 @@
-package me.star.security.secrurity;
+package me.star.security.security;
 
 import lombok.RequiredArgsConstructor;
 import me.star.security.config.SecurityProperties;

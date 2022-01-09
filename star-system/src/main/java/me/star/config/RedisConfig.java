@@ -28,7 +28,7 @@ import java.time.Duration;
 @EnableCaching
 public class RedisConfig {
 
-    private final Duration timeToLive = Duration.ofHours(6);
+    private final Duration timeToLive = Duration.ofHours(2);
 
     @Bean(name = "redisTemplate")
     @ConditionalOnMissingBean(name = "redisTemplate")

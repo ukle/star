@@ -16,7 +16,7 @@ import me.star.security.config.LoginProperties;
 import me.star.security.config.SecurityProperties;
 import me.star.security.dto.AuthUserDto;
 import me.star.security.dto.JwtUserDto;
-import me.star.security.secrurity.TokenProvider;
+import me.star.security.security.TokenProvider;
 import me.star.security.service.OnlineUserService;
 import me.star.utils.RedisUtils;
 import me.star.utils.RsaUtils;

@@ -1,4 +1,4 @@
-package me.star.security.secrurity;
+package me.star.security.security;
 
 import cn.hutool.core.util.StrUtil;
 import io.jsonwebtoken.ExpiredJwtException;

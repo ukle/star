@@ -1,4 +1,4 @@
-package me.star.security.secrurity;
+package me.star.security.security;
 
 import cn.hutool.core.date.DateField;
 import cn.hutool.core.date.DateUtil;

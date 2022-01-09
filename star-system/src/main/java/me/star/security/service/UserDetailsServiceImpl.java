@@ -24,7 +24,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @description /
  * @create 2022/1/8 20:16
  */
-
 @RequiredArgsConstructor
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -32,7 +31,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserService userService;
     private final DataService dataService;
     private final RoleService roleService;
-
     private final LoginProperties loginProperties;
 
     final static Map<String, Future<JwtUserDto>> USER_DTO_CACHE = new ConcurrentHashMap<>();
