@@ -2,6 +2,7 @@ package me.star.deploy.domain.entity;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import me.star.base.BaseEntity;
@@ -38,6 +39,7 @@ public class ServerDeploy extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "账号")
     private String account;
 
+    @JSONField(serialize = false)
     @ApiModelProperty(value = "密码")
     private String password;
 
