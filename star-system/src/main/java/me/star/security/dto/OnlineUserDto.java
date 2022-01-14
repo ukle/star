@@ -59,7 +59,7 @@ public class OnlineUserDto {
      */
     private Date loginTime;
 
-    public OnlineUserDto(JwtUserDto jwtUserDto, String ip, String browser, String token) throws Exception {
+    public OnlineUserDto(JwtUserDto jwtUserDto, String browser, String ip, String token) throws Exception {
         UserDto user = jwtUserDto.getUser();
         this.userName = jwtUserDto.getUsername();
         this.nickName = user.getNickName();

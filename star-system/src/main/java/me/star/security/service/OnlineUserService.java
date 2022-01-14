@@ -74,12 +74,14 @@ public class OnlineUserService {
         List<OnlineUserDto> onlineUserDtos = new ArrayList<>();
         for (String key : keys) {
             OnlineUserDto onlineUserDto = (OnlineUserDto) redisUtils.get(key);
-            if (StringUtils.isNotBlank(filter)) {
-                if (onlineUserDto.toString().contains(filter)) {
+            if (onlineUserDto != null) {
+                if (StringUtils.isNotBlank(filter)) {
+                    if (onlineUserDto.toString().contains(filter)) {
+                        onlineUserDtos.add(onlineUserDto);
+                    }
+                } else {
                     onlineUserDtos.add(onlineUserDto);
                 }
-            } else {
-                onlineUserDtos.add(onlineUserDto);
             }
         }
         onlineUserDtos.sort((o1, o2) -> o2.getLoginTime().compareTo(o1.getLoginTime()));
