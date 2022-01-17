@@ -108,20 +108,29 @@ public class AuthorizationController {
     @AnonymousGetMapping(value = "/code")
     public ResponseEntity<Object> getCode() {
         // 获取运算的结果
+        log.info("开始处理来自客户端获取验证码请求...");
         Captcha captcha = loginProperties.getCaptcha();
         String uuid = properties.getCodeKey() + IdUtil.simpleUUID();
         //当验证码类型为 arithmetic时且长度 >= 2 时，captcha.text()的结果有几率为浮点型
         String captchaValue = captcha.text();
+        log.info("获取验证码运算结果：" + captchaValue);
+        // 修复算数型验证码生成浮点型结果，导致前端输入整形数据匹配错误
         if (captcha.getCharType() - 1 == LoginCodeEnum.arithmetic.ordinal() && captchaValue.contains(".")) {
             captchaValue = captchaValue.split("\\.")[0];
         }
+        log.info("验证码运算结果格式化：" + captchaValue);
         // 保存
-        redisUtils.set(uuid, captchaValue, loginProperties.getLoginCode().getExpiration(), TimeUnit.MINUTES);
+        if (redisUtils.set(uuid, captchaValue, loginProperties.getLoginCode().getExpiration(), TimeUnit.MINUTES)){
+            log.info("key：" + uuid + ",保存到 Redis成功！");
+        } else {
+            log.info("key：" + uuid + ",保存到 Redis失败！");
+        }
         // 验证码信息
         Map<String, Object> imgResult = new HashMap<String, Object>(2) {{
             put("img", captcha.toBase64());
             put("uuid", uuid);
         }};
+        log.info("返回验证码数据给客户端");
         return ResponseEntity.ok(imgResult);
     }
 
