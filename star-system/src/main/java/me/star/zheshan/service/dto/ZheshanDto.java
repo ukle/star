@@ -21,14 +21,11 @@ public class ZheshanDto implements Serializable {
     /** 类型 */
     private String zsType;
 
-    /** 名称 */
-    private String zsName;
-
     /** 尺寸 */
     private String zsLength;
 
     /** 方数 */
-    private Integer zsFangshu;
+    private String zsFangshu;
 
     /** 头型 */
     private String zsTouxing;
@@ -60,5 +57,5 @@ public class ZheshanDto implements Serializable {
     /** 更新时间 */
     private Timestamp updateTime;
 
-    private boolean isOnSale;
+    private String saleStatus;
 }

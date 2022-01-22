@@ -55,4 +55,21 @@ public interface ZheshanService {
     */
     void deleteAll(Long[] ids);
 
+    /**
+     * 根据销售状态统计折扇数量
+     * @param saleStatus
+     * @return
+     */
+    int countBySaleStatusIn(List<String> saleStatus);
+
+    /**
+     * 总成本价
+     * @return
+     */
+    int sumBySaleIn();
+    /**
+     * 总销售价
+     * @return
+     */
+    int sumBySaleOut();
 }

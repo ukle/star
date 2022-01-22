@@ -241,4 +241,9 @@ public class UserServiceImpl implements UserService {
         // 清理缓存
         delCaches(user.getId(), user.getUsername());
     }
+
+    @Override
+    public int countAllEnableUser() {
+        return userRepository.countByEnabled(true);
+    }
 }

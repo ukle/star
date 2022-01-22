@@ -18,4 +18,7 @@ public class ZheshanQueryCriteria{
     /** BETWEEN */
     @Query(type = Query.Type.BETWEEN)
     private List<Timestamp> createTime;
+    /** 精确 */
+    @Query
+    private String saleStatus;
 }

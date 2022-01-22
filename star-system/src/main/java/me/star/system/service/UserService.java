@@ -100,4 +100,6 @@ public interface UserService {
      * @param resources /
      */
     void updateCenter(User resources);
+
+    int countAllEnableUser();
 }

@@ -14,12 +14,12 @@ import java.sql.Timestamp;
 import java.io.Serializable;
 
 /**
-* @author Star Chou
-* @date 2022-01-15
-**/
+ * @author Star Chou
+ * @date 2022-01-15
+ **/
 @Entity
 @Data
-@Table(name="zheshan")
+@Table(name = "zheshan")
 @EntityListeners(AuditingEntityListener.class)
 public class Zheshan implements Serializable {
 
@@ -29,26 +29,22 @@ public class Zheshan implements Serializable {
     @ApiModelProperty(value = "主键id")
     private Long zsId;
 
-    @Column(name = "zs_type",nullable = false)
+    @Column(name = "zs_type", nullable = false)
     @NotBlank
     @ApiModelProperty(value = "折扇类型：玉竹、棕竹、云妃")
     private String zsType;
 
-    @Column(name = "zs_name")
-    @ApiModelProperty(value = "折扇名称")
-    private String zsName;
-
-    @Column(name = "zs_length",nullable = false)
+    @Column(name = "zs_length", nullable = false)
     @NotBlank
     @ApiModelProperty(value = "折扇尺寸")
     private String zsLength;
 
-    @Column(name = "zs_touxing",nullable = false)
+    @Column(name = "zs_touxing", nullable = false)
     @NotBlank
     @ApiModelProperty(value = "折扇头型")
     private String zsTouxing;
 
-    @Column(name = "zs_paikou",nullable = false)
+    @Column(name = "zs_paikou", nullable = false)
     @NotNull
     @ApiModelProperty(value = "折扇排口：1.5，1.8，2.0，3.0")
     private String zsPaikou;
@@ -61,12 +57,12 @@ public class Zheshan implements Serializable {
     @ApiModelProperty(value = "折扇烫钉：黑牛角、白牛角")
     private String zsTangding;
 
-    @Column(name = "zs_fangshu",nullable = false)
+    @Column(name = "zs_fangshu", nullable = false)
     @NotNull
     @ApiModelProperty(value = "折扇方数：16、18方")
-    private Integer zsFangshu;
+    private String zsFangshu;
 
-    @Column(name = "zs_sale_in",nullable = false)
+    @Column(name = "zs_sale_in", nullable = false)
     @NotNull
     @ApiModelProperty(value = "折扇买入价")
     private Integer zsSaleIn;
@@ -93,11 +89,11 @@ public class Zheshan implements Serializable {
     @LastModifiedDate
     private Timestamp updateTime;
 
-    @Column(name = "is_on_sale")
-    @ApiModelProperty(value = "是否在售")
-    private boolean isOnSale;
+    @Column(name = "sale_status")
+    @ApiModelProperty(value = "销售状态")
+    private String saleStatus;
 
-    public void copy(Zheshan source){
-        BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
+    public void copy(Zheshan source) {
+        BeanUtil.copyProperties(source, this, CopyOptions.create().setIgnoreNullValue(true));
     }
 }

@@ -74,4 +74,18 @@ public class ZheshanServiceImpl implements ZheshanService {
         }
     }
 
+    @Override
+    public int countBySaleStatusIn(List<String> saleStatus) {
+        return zheshanRepository.countBySaleStatusIn(saleStatus);
+    }
+
+    @Override
+    public int sumBySaleIn() {
+        return zheshanRepository.countByZsSaleIn();
+    }
+
+    @Override
+    public int sumBySaleOut() {
+        return zheshanRepository.countByZsSaleOut();
+    }
 }

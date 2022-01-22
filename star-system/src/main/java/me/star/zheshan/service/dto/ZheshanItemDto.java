@@ -35,8 +35,8 @@ public class ZheshanItemDto extends ZheshanDto implements Serializable {
         if (StringUtils.isNotBlank(zsLength)) {
             guigeList.add(String.format("%s寸", zsLength));
         }
-        Integer fangshu = entity.getZsFangshu();
-        if (fangshu != null && fangshu != 0) {
+        String fangshu = entity.getZsFangshu();
+        if (StringUtils.isNotBlank(fangshu)) {
             guigeList.add(String.format("%s方", fangshu));
         }
         String zsTouxing = entity.getZsTouxing();
