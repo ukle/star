@@ -1,6 +1,6 @@
 package me.star.deploy.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 import me.star.base.BaseDTO;
 
@@ -25,7 +25,7 @@ public class ServerDeployDto extends BaseDTO implements Serializable {
 
     private String account;
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     private String password;
 
     @Override

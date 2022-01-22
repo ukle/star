@@ -1,29 +1,23 @@
 package me.star.zheshan.service.impl;
 
-import me.star.zheshan.domain.Zheshan;
-import me.star.utils.ValidationUtil;
-import me.star.utils.FileUtil;
 import lombok.RequiredArgsConstructor;
+import me.star.utils.PageUtil;
+import me.star.utils.QueryHelp;
+import me.star.utils.ValidationUtil;
+import me.star.zheshan.domain.Zheshan;
 import me.star.zheshan.repository.ZheshanRepository;
 import me.star.zheshan.service.ZheshanService;
 import me.star.zheshan.service.dto.ZheshanDto;
 import me.star.zheshan.service.dto.ZheshanItemDto;
 import me.star.zheshan.service.dto.ZheshanQueryCriteria;
 import me.star.zheshan.service.mapstruct.ZheshanMapper;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.util.IdUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import me.star.utils.PageUtil;
-import me.star.utils.QueryHelp;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Map;
-import java.io.IOException;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 /**
 * @description 服务实现
@@ -80,27 +74,4 @@ public class ZheshanServiceImpl implements ZheshanService {
         }
     }
 
-    @Override
-    public void download(List<ZheshanDto> all, HttpServletResponse response) throws IOException {
-        List<Map<String, Object>> list = new ArrayList<>();
-        for (ZheshanDto zheshan : all) {
-            Map<String,Object> map = new LinkedHashMap<>();
-            map.put("类型", zheshan.getZsType());
-            map.put("名称", zheshan.getZsName());
-            map.put("尺寸", zheshan.getZsLength());
-            map.put("方数", zheshan.getZsFangshu());
-            map.put("头型", zheshan.getZsTouxing());
-            map.put("排口", zheshan.getZsPaikou());
-            map.put("肩部", zheshan.getZsJianbu());
-            map.put("烫钉", zheshan.getZsTangding());
-            map.put("买入价", zheshan.getZsSaleIn());
-            map.put("卖出价", zheshan.getZsSaleOut());
-            map.put("作者", zheshan.getZsAuthor());
-            map.put("描述", zheshan.getZsDesc());
-            map.put("创建日期", zheshan.getCreateTime());
-            map.put("更新时间", zheshan.getUpdateTime());
-            list.add(map);
-        }
-        FileUtil.downloadExcel(list, response);
-    }
 }

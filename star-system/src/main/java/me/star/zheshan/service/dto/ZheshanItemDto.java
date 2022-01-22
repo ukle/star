@@ -43,8 +43,8 @@ public class ZheshanItemDto extends ZheshanDto implements Serializable {
         if (StringUtils.isNotBlank(zsTouxing)) {
             guigeList.add(String.format("%s", zsTouxing));
         }
-        Float zsPaikou = entity.getZsPaikou();
-        if (zsPaikou != null) {
+        String zsPaikou = entity.getZsPaikou();
+        if (StringUtils.isNotBlank(zsPaikou)) {
             guigeList.add(String.format("%s排口", zsPaikou));
         }
         String zsJianbu = entity.getZsJianbu();

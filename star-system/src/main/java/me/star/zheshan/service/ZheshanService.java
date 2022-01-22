@@ -6,8 +6,6 @@ import me.star.zheshan.service.dto.ZheshanQueryCriteria;
 import org.springframework.data.domain.Pageable;
 import java.util.Map;
 import java.util.List;
-import java.io.IOException;
-import javax.servlet.http.HttpServletResponse;
 
 /**
 * @description 服务接口
@@ -57,11 +55,4 @@ public interface ZheshanService {
     */
     void deleteAll(Long[] ids);
 
-    /**
-    * 导出数据
-    * @param all 待导出的数据
-    * @param response /
-    * @throws IOException /
-    */
-    void download(List<ZheshanDto> all, HttpServletResponse response) throws IOException;
 }

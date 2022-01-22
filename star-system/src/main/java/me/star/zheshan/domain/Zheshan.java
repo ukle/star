@@ -4,6 +4,10 @@ import lombok.Data;
 import cn.hutool.core.bean.BeanUtil;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hutool.core.bean.copier.CopyOptions;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Timestamp;
@@ -16,6 +20,7 @@ import java.io.Serializable;
 @Entity
 @Data
 @Table(name="zheshan")
+@EntityListeners(AuditingEntityListener.class)
 public class Zheshan implements Serializable {
 
     @Id
@@ -46,7 +51,7 @@ public class Zheshan implements Serializable {
     @Column(name = "zs_paikou",nullable = false)
     @NotNull
     @ApiModelProperty(value = "折扇排口：1.5，1.8，2.0，3.0")
-    private Float zsPaikou;
+    private String zsPaikou;
 
     @Column(name = "zs_jianbu")
     @ApiModelProperty(value = "折扇肩部：直肩、美人肩、庙门肩")
@@ -80,11 +85,17 @@ public class Zheshan implements Serializable {
 
     @Column(name = "create_time")
     @ApiModelProperty(value = "创建日期")
+    @CreatedDate
     private Timestamp createTime;
 
     @Column(name = "update_time")
     @ApiModelProperty(value = "更新时间")
+    @LastModifiedDate
     private Timestamp updateTime;
+
+    @Column(name = "is_on_sale")
+    @ApiModelProperty(value = "是否在售")
+    private boolean isOnSale;
 
     public void copy(Zheshan source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

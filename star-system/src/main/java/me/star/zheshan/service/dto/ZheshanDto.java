@@ -34,7 +34,7 @@ public class ZheshanDto implements Serializable {
     private String zsTouxing;
 
     /** 排口 */
-    private Float zsPaikou;
+    private String zsPaikou;
 
     /** 肩部 */
     private String zsJianbu;
@@ -59,4 +59,6 @@ public class ZheshanDto implements Serializable {
 
     /** 更新时间 */
     private Timestamp updateTime;
+
+    private boolean isOnSale;
 }

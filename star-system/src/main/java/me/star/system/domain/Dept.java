@@ -1,6 +1,6 @@
 package me.star.system.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_dept")
+@Table(name = "sys_dept")
 public class Dept extends BaseEntity implements Serializable {
 
     @Id
@@ -31,7 +31,7 @@ public class Dept extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
+    @JSONField(serialize = false)
     @ManyToMany(mappedBy = "depts")
     @ApiModelProperty(value = "角色")
     private Set<Role> roles;
