@@ -5,7 +5,7 @@
     <parent>
         <artifactId>star</artifactId>
         <groupId>me.star</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,14 +22,14 @@
         <dependency>
             <groupId>me.star</groupId>
             <artifactId>star-generator</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
 
         <!-- 个人工具模块 -->
         <dependency>
             <groupId>me.star</groupId>
             <artifactId>star-tools</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
 
         <dependency>

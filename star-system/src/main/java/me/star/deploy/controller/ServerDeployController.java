@@ -29,12 +29,6 @@ public class ServerDeployController {
 
     private final ServerDeployService serverDeployService;
 
-    @ApiOperation("导出服务器数据")
-    @GetMapping(value = "/download")
-    public void exportServerDeploy(HttpServletResponse response, ServerDeployQueryCriteria criteria) throws IOException {
-        serverDeployService.download(serverDeployService.queryAll(criteria), response);
-    }
-
     @ApiOperation(value = "查询服务器")
     @GetMapping
     public ResponseEntity<Object> queryServerDeploy(ServerDeployQueryCriteria criteria, Pageable pageable){

@@ -8,7 +8,6 @@ import me.star.deploy.service.ServerDeployService;
 import me.star.deploy.service.dto.ServerDeployQueryCriteria;
 import me.star.deploy.service.mapstruct.ServerDeployMapper;
 import me.star.deploy.utils.ExecuteShellUtil;
-import me.star.utils.FileUtil;
 import me.star.utils.PageUtil;
 import me.star.utils.QueryHelp;
 import me.star.utils.ValidationUtil;
@@ -17,9 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author sida_zhou
@@ -95,18 +93,4 @@ public class ServerDeployServiceImpl implements ServerDeployService {
         }
     }
 
-    @Override
-    public void download(List<ServerDeployDto> queryAll, HttpServletResponse response) throws IOException {
-        List<Map<String, Object>> list = new ArrayList<>();
-        for (ServerDeployDto deployDto : queryAll) {
-            Map<String, Object> map = new LinkedHashMap<>();
-            map.put("服务器名称", deployDto.getName());
-            map.put("服务器IP", deployDto.getIp());
-            map.put("端口", deployDto.getPort());
-            map.put("账号", deployDto.getAccount());
-            map.put("创建日期", deployDto.getCreateTime());
-            list.add(map);
-        }
-        FileUtil.downloadExcel(list, response);
-    }
 }

@@ -71,11 +71,4 @@ public interface ServerDeployService {
      */
     Boolean testConnect(ServerDeploy resources);
 
-    /**
-     * 导出数据
-     * @param queryAll /
-     * @param response /
-     * @throws IOException /
-     */
-    void download(List<ServerDeployDto> queryAll, HttpServletResponse response) throws IOException;
 }
