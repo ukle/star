@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import me.star.system.service.MonitorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +25,6 @@ public class MonitorController {
 
     @GetMapping
     @ApiOperation("查询服务监控")
-    @PreAuthorize("@el.check('monitor:list')")
     public ResponseEntity<Object> queryMonitor(){
         return new ResponseEntity<>(serverService.getServers(), HttpStatus.OK);
     }

@@ -1,5 +1,7 @@
 package me.star.system.service;
 
+import me.star.domain.vo.EmailVo;
+
 /**
  * @author Star Chou
  * @description /
@@ -13,4 +15,12 @@ public interface VerifyService {
      * @param key /
      */
     void validated(String key, String code);
+
+    /**
+     * 发送验证码
+     * @param email /
+     * @param key /
+     * @return /
+     */
+    EmailVo sendEmail(String email, String key);
 }

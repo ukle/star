@@ -20,7 +20,6 @@ import me.star.utils.SecurityUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -52,13 +51,6 @@ public class UserController {
     private final DeptService deptService;
     private final RoleService roleService;
     private final VerifyService verificationCodeService;
-
-    @ApiOperation("导出用户数据")
-    @GetMapping(value = "/download")
-    @PreAuthorize("@el.check('user:list')")
-    public void exportUser(HttpServletResponse response, UserQueryCriteria criteria) throws IOException {
-        userService.download(userService.queryAll(criteria), response);
-    }
 
     @ApiOperation("查询用户")
     @GetMapping
