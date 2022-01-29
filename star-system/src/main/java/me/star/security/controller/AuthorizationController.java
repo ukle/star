@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.star.annotation.AnonymousDeleteMapping;
 import me.star.annotation.AnonymousGetMapping;
 import me.star.annotation.AnonymousPostMapping;
+import me.star.annotation.Limit;
 import me.star.config.RsaProperties;
 import me.star.exception.BadRequestException;
 import me.star.security.config.LoginCodeEnum;
@@ -106,6 +107,7 @@ public class AuthorizationController {
 
     @ApiOperation("获取验证码")
     @AnonymousGetMapping(value = "/code")
+    @Limit(key = "authCode", period = 60, count = 3, name = "authCodeLimit", prefix = "limit")
     public ResponseEntity<Object> getCode() {
         // 获取运算的结果
         log.info("开始处理来自客户端获取验证码请求...");
