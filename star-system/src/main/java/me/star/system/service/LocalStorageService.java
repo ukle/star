@@ -1,8 +1,8 @@
-package me.star.service;
+package me.star.system.service;
 
-import me.star.domain.LocalStorageDto;
-import me.star.domain.LocalStorageQueryCriteria;
-import me.star.entity.LocalStorage;
+import me.star.system.domain.LocalStorage;
+import me.star.system.dto.LocalStorageDto;
+import me.star.system.dto.LocalStorageQueryCriteria;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,13 +1,13 @@
-package me.star.service.impl;
+package me.star.system.service.impl;
 
 import cn.hutool.extra.mail.Mail;
 import cn.hutool.extra.mail.MailAccount;
 import lombok.RequiredArgsConstructor;
-import me.star.domain.vo.EmailVo;
-import me.star.entity.EmailConfig;
 import me.star.exception.BadRequestException;
-import me.star.repository.EmailRepository;
-import me.star.service.EmailService;
+import me.star.system.domain.EmailConfig;
+import me.star.system.domain.EmailVo;
+import me.star.system.repository.EmailRepository;
+import me.star.system.service.EmailService;
 import me.star.utils.EncryptUtils;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+
 
 /**
  * @author sida_zhou

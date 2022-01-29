@@ -1,15 +1,15 @@
-package me.star.service.impl;
+package me.star.system.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import lombok.RequiredArgsConstructor;
 import me.star.config.FileProperties;
-import me.star.domain.LocalStorageDto;
-import me.star.domain.LocalStorageQueryCriteria;
-import me.star.entity.LocalStorage;
 import me.star.exception.BadRequestException;
-import me.star.mapstruct.LocalStorageMapper;
-import me.star.repository.LocalStorageRepository;
-import me.star.service.LocalStorageService;
+import me.star.system.domain.LocalStorage;
+import me.star.system.dto.LocalStorageDto;
+import me.star.system.dto.LocalStorageQueryCriteria;
+import me.star.system.mapstruct.LocalStorageMapper;
+import me.star.system.repository.LocalStorageRepository;
+import me.star.system.service.LocalStorageService;
 import me.star.utils.FileUtil;
 import me.star.utils.PageUtil;
 import me.star.utils.QueryHelp;

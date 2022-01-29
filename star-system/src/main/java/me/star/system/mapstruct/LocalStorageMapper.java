@@ -1,8 +1,8 @@
-package me.star.mapstruct;
+package me.star.system.mapstruct;
 
 import me.star.base.BaseMapper;
-import me.star.domain.LocalStorageDto;
-import me.star.entity.LocalStorage;
+import me.star.system.domain.LocalStorage;
+import me.star.system.dto.LocalStorageDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 

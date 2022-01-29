@@ -1,4 +1,4 @@
-package me.star.entity;
+package me.star.system.domain;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;

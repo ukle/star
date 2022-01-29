@@ -1,7 +1,8 @@
-package me.star.service;
+package me.star.system.service;
 
-import me.star.domain.vo.EmailVo;
-import me.star.entity.EmailConfig;
+
+import me.star.system.domain.EmailConfig;
+import me.star.system.domain.EmailVo;
 
 /**
  * @author sida_zhou

@@ -1,6 +1,6 @@
-package me.star.repository;
+package me.star.system.repository;
 
-import me.star.entity.LocalStorage;
+import me.star.system.domain.LocalStorage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

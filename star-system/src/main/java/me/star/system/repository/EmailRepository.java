@@ -1,6 +1,6 @@
-package me.star.repository;
+package me.star.system.repository;
 
-import me.star.entity.EmailConfig;
+import me.star.system.domain.EmailConfig;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

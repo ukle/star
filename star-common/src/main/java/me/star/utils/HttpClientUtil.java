@@ -1,5 +1,6 @@
 package me.star.utils;
 
+import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
@@ -169,10 +170,10 @@ public class HttpClientUtil {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
         CloseableHttpResponse res = null;
-        log.info("post发送请求，地址：{}，参数：{}", url, JacksonUtil.to(params));
+        log.info("post发送请求，地址：{}，参数：{}", url, JSONUtil.toJsonStr(params));
         try {
             // 在传送复杂嵌套对象时，要把对象转成json字符串
-            StringEntity requestEntity = new StringEntity(JacksonUtil.to(params), "utf-8");
+            StringEntity requestEntity = new StringEntity(JSONUtil.toJsonStr(params), "utf-8");
             requestEntity.setContentEncoding("UTF-8");
             httpPost.setEntity(requestEntity);
             httpPost.addHeader("Content-Type", "application/json");

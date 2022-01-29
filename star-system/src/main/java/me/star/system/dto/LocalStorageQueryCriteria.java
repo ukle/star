@@ -1,4 +1,4 @@
-package me.star.domain;
+package me.star.system.dto;
 
 import lombok.Data;
 import me.star.annotation.Query;

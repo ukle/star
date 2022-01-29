@@ -1,12 +1,12 @@
-package me.star.controller;
+package me.star.system.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import me.star.domain.LocalStorageQueryCriteria;
-import me.star.entity.LocalStorage;
 import me.star.exception.BadRequestException;
-import me.star.service.LocalStorageService;
+import me.star.system.domain.LocalStorage;
+import me.star.system.dto.LocalStorageQueryCriteria;
+import me.star.system.service.LocalStorageService;
 import me.star.utils.FileUtil;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;

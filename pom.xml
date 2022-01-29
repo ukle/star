@@ -12,7 +12,6 @@
         <module>star-generator</module>
         <module>star-common</module>
         <module>star-system</module>
-        <module>star-tools</module>
         <module>star-memento</module>
     </modules>
 

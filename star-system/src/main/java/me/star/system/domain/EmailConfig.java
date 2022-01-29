@@ -1,4 +1,4 @@
-package me.star.entity;
+package me.star.system.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

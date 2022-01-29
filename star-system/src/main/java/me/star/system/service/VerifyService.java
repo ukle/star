@@ -1,6 +1,6 @@
 package me.star.system.service;
 
-import me.star.domain.vo.EmailVo;
+import me.star.system.domain.EmailVo;
 
 /**
  * @author Star Chou
