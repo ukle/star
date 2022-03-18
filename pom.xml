@@ -12,10 +12,9 @@
         <module>star-generator</module>
         <module>star-common</module>
         <module>star-system</module>
-        <module>star-memento</module>
     </modules>
 
-    <name>STAR 自我管理</name>
+    <name>STAR 管理后台</name>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,8 +22,8 @@
     </parent>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
 
         <druid.version>1.2.8</druid.version>
         <swagger.version>3.0.0</swagger.version>
