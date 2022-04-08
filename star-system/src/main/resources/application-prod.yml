@@ -4,9 +4,9 @@ spring:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:star}?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-      username: ${DB_USER:root}
-      password: ${DB_PWD:root}
+      url: jdbc:mysql://192.168.0.92:3306/eladmin?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      username: root
+      password: HFMysql@2022
       # 初始连接数
       initial-size: 5
       # 最小连接数
@@ -111,7 +111,7 @@ ip:
 
 #是否允许生成代码，生产环境设置为false
 generator:
-  enabled: false
+  enabled: true
 
 
 # 文件存储路径

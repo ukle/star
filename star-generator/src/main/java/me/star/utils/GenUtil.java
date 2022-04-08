@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.template.*;
 import me.star.domain.vo.ColumnInfo;
 import me.star.domain.vo.GenConfig;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.io.File;
@@ -48,6 +49,8 @@ public class GenUtil {
         templateNames.add("Service");
         templateNames.add("ServiceImpl");
         templateNames.add("Repository");
+        templateNames.add("ForCreate");
+        templateNames.add("ForUpdate");
         return templateNames;
     }
 
@@ -67,7 +70,7 @@ public class GenUtil {
      * 生成代码
      *
      * @param columnInfos /
-     * @param genConfig /
+     * @param genConfig   /
      * @throws IOException /
      */
     public static void generatorCode(List<ColumnInfo> columnInfos, GenConfig genConfig) throws IOException {
@@ -76,7 +79,7 @@ public class GenUtil {
         // 生成后端代码
         List<String> templates = getAdminTemplateNames();
         for (String templateName : templates) {
-            Template template = engine.getTemplate("generator/admin/" + templateName + ".ftl");
+            Template template = engine.getTemplate("generator/admin2/" + templateName + ".ftl");
             String rootPath = System.getProperty("user.dir");
             String filePath = getAdminFilePath(templateName, genConfig, genMap.get("className").toString(), rootPath);
 
@@ -111,6 +114,7 @@ public class GenUtil {
 
     /**
      * 获取模版数据
+     *
      * @param columnInfos
      * @param genConfig
      * @return
@@ -175,6 +179,10 @@ public class GenUtil {
             Map<String, Object> listMap = new HashMap<>(16);
             // 字段描述
             listMap.put("remark", column.getRemark());
+            if (column.getMaxLength() != null) {
+                // 字段长度
+                listMap.put("maxLength", column.getMaxLength());
+            }
             // 字段类型
             listMap.put("columnKey", column.getKeyType());
             // 主键类型
@@ -270,6 +278,11 @@ public class GenUtil {
         genMap.put("betweens", betweens);
         // 保存非空字段信息
         genMap.put("isNotNullColumns", isNotNullColumns);
+        if (!CollectionUtils.isEmpty(isNotNullColumns)) {
+            genMap.put("notNull", true);
+        } else {
+            genMap.put("notNull", false);
+        }
         return genMap;
     }
 
@@ -284,7 +297,7 @@ public class GenUtil {
         }
 
         if ("Entity".equals(templateName)) {
-            return packagePath + "domain" + File.separator + className + ".java";
+            return packagePath + "repository" + File.separator + "entity" + File.separator + className + ".java";
         }
 
         if ("Controller".equals(templateName)) {
@@ -300,11 +313,20 @@ public class GenUtil {
         }
 
         if ("Dto".equals(templateName)) {
-            return packagePath + "service" + File.separator + "dto" + File.separator + className + "Dto.java";
+            return packagePath + "domain" + File.separator + "dto" + File.separator + className + "Dto.java";
         }
 
+        if ("ForCreate".equals(templateName)) {
+            return packagePath + "domain" + File.separator + "dto" + File.separator + className + "ForCreate.java";
+        }
+
+        if ("ForUpdate".equals(templateName)) {
+            return packagePath + "domain" + File.separator + "dto" + File.separator + className + "ForUpdate.java";
+        }
+
+
         if ("QueryCriteria".equals(templateName)) {
-            return packagePath + "service" + File.separator + "dto" + File.separator + className + "QueryCriteria.java";
+            return packagePath + "domain" + File.separator + "dto" + File.separator + className + "QueryCriteria.java";
         }
 
         if ("Mapper".equals(templateName)) {
@@ -336,6 +358,7 @@ public class GenUtil {
 
     /**
      * 生成目标文件
+     *
      * @param file
      * @param template
      * @param map
@@ -370,7 +393,7 @@ public class GenUtil {
         TemplateEngine engine = TemplateUtil.createEngine(new TemplateConfig("template", TemplateConfig.ResourceMode.CLASSPATH));
         for (String templateName : templates) {
             Map<String, Object> map = new HashMap<>(1);
-            Template template = engine.getTemplate("generator/admin/" + templateName + ".ftl");
+            Template template = engine.getTemplate("generator/admin2/" + templateName + ".ftl");
             map.put("content", template.render(genMap));
             map.put("name", templateName);
             genList.add(map);
@@ -395,7 +418,7 @@ public class GenUtil {
         // 生成后端代码
         List<String> templates = getAdminTemplateNames();
         for (String templateName : templates) {
-            Template template = engine.getTemplate("generator/admin/" + templateName + ".ftl");
+            Template template = engine.getTemplate("generator/admin2/" + templateName + ".ftl");
             String filePath = getAdminFilePath(templateName, genConfig, genMap.get("className").toString(), tempPath + "star" + File.separator);
             assert filePath != null;
             File file = new File(filePath);

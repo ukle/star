@@ -64,7 +64,11 @@ public class ColumnInfo implements Serializable {
     @ApiModelProperty(value = "日期注解")
     private String dateAnnotation;
 
-    public ColumnInfo(String tableName, String columnName, Boolean notNull, String columnType, String remark, String keyType, String extra) {
+    @ApiModelProperty(value = "字段长度限制")
+    private Integer maxLength;
+
+    public ColumnInfo(String tableName, String columnName, Boolean notNull, String columnType, String remark,
+                      String keyType, String extra, Integer maxLength) {
         this.tableName = tableName;
         this.columnName = columnName;
         this.columnType = columnType;
@@ -77,5 +81,6 @@ public class ColumnInfo implements Serializable {
         this.remark = remark;
         this.listShow = true;
         this.formShow = true;
+        this.maxLength = maxLength;
     }
 }

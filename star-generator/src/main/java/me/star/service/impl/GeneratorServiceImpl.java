@@ -94,7 +94,7 @@ public class GeneratorServiceImpl implements GeneratorService {
     @Override
     public List<ColumnInfo> query(String tableName) {
         // 使用预编译防止sql注入
-        String sql = "select column_name, is_nullable, data_type, column_comment, column_key, extra from information_schema.columns " +
+        String sql = "select column_name, is_nullable, data_type, column_comment, column_key, extra, character_maximum_length from information_schema.columns " +
                 "where table_name = ? and table_schema = (select database()) order by ordinal_position";
         Query query = em.createNativeQuery(sql);
         query.setParameter(1, tableName);
@@ -110,7 +110,9 @@ public class GeneratorServiceImpl implements GeneratorService {
                             arr[2].toString(),
                             ObjectUtil.isNotNull(arr[3]) ? arr[3].toString() : null,
                             ObjectUtil.isNotNull(arr[4]) ? arr[4].toString() : null,
-                            ObjectUtil.isNotNull(arr[5]) ? arr[5].toString() : null)
+                            ObjectUtil.isNotNull(arr[5]) ? arr[5].toString() : null,
+                            ObjectUtil.isNotNull(arr[6]) ? Integer.parseInt(arr[6].toString()) : null
+                            )
             );
         }
         return columnInfos;
