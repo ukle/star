@@ -3,8 +3,8 @@ package ${package}.service.dto;
 import lombok.Data;
 import io.swagger.annotations.ApiModelProperty;
 import cn.hf.fuda.activity.repository.entity.${className};
-<#if hasTimestamp>
-import java.sql.Timestamp;
+<#if hasLocalDateTime>
+import java.time.LocalDateTime;
 </#if>
 <#if notNull>
 import javax.validation.constraints.NotNull;
@@ -13,10 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 </#if>
 import java.io.Serializable;
-<#if !auto && pkColumnType = 'Long'>
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.serializer.ToStringSerializer;
-</#if>
+import javax.validation.constraints.Max;
 
 /**
 * @author ${author}
@@ -24,9 +21,10 @@ import com.alibaba.fastjson.serializer.ToStringSerializer;
 **/
 @Data
 public class ${className}ForCreate implements Serializable {
+
 <#if columns??>
     <#list columns as column>
-
+    <#if column.changeColumnName != 'id'>
     <#if column.remark != '' && column.istNotNull == true>
     @ApiModelProperty(value = "${column.remark}", required = true)
     @NotNull
@@ -34,22 +32,20 @@ public class ${className}ForCreate implements Serializable {
     <#if column.remark != '' && column.istNotNull == false>
     @ApiModelProperty(value = "${column.remark}")
     </#if>
-    <#if column.columnKey = 'PRI'>
-    <#if !auto && pkColumnType = 'Long'>
-    /** 防止精度丢失 */
-    @JSONField(serializeUsing = ToStringSerializer.class)
-    </#if>
-    </#if>
     <#if column.maxLength?exists>
+    <#if column.maxLength != 65535>
     @Max(value = ${column.maxLength}, message = "${column.remark}长度不能超过${column.maxLength}")
     </#if>
+    </#if>
     private ${column.columnType} ${column.changeColumnName};
+
+    </#if>
     </#list>
 </#if>
 
     public ${className} to${className}() {
         ${className} entity = new ${className}();
-        //todo
+        //todo 入参赋值给实体
         return entity;
     }
 }

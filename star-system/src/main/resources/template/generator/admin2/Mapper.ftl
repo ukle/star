@@ -1,7 +1,7 @@
 package ${package}.service.mapstruct;
 
-import ${package}.domain.${className};
-import ${package}.service.dto.${className}Dto;
+import ${package}.repository.entity.${className};
+import ${package}.domain.dto.${className}Dto;
 import cn.hf.fuda.common.web.base.BaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

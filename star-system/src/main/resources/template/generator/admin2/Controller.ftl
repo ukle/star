@@ -5,7 +5,7 @@ import ${package}.service.${className}Service;
 import ${package}.domain.dto.${className}Dto;
 import ${package}.domain.dto.${className}ForCreate;
 import ${package}.domain.dto.${className}ForUpdate;
-import ${package}.service.dto.${className}QueryCriteria;
+import ${package}.domain.dto.${className}QueryCriteria;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -30,27 +30,27 @@ public class ${className}Controller {
     @PostMapping("/page/{pageIndex}/{pageSize}")
     @ApiOperation("分页查询${apiAlias}")
     public PageResult<${className}Dto> query(@Validated @RequestBody ${className}QueryCriteria criteria,
-                                             @PathVariable("pageIndex") int pageIndex,
-                                             @PathVariable("pageSize") int pageSize) {
+                                         @PathVariable("pageIndex") int pageIndex,
+                                         @PathVariable("pageSize") int pageSize) {
         PageRequest page = PageRequest.of(pageIndex - 1, pageSize);
         return ${changeClassName}Service.queryAll(criteria, page);
     }
 
     @GetMapping("/list")
     @ApiOperation("查询${apiAlias}")
-    public List<${className}Dto> query(${className}QueryCriteria criteria){
+    public List<${className}Dto> query(${className}QueryCriteria criteria) {
         return ${changeClassName}Service.queryAll(criteria);
     }
 
     @PostMapping("/create")
     @ApiOperation("新增${apiAlias}")
-    public ${className}Dto create(@Validated @RequestBody ${className}ForCreate forCreate){
+    public ${className}Dto create(@Validated @RequestBody ${className}ForCreate forCreate) {
         return ${changeClassName}Service.create(forCreate);
     }
 
     @PostMapping("/update")
     @ApiOperation("修改${apiAlias}")
-    public void update(@Validated @RequestBody ${className}ForUpdate forUpdate){
+    public void update(@Validated @RequestBody ${className}ForUpdate forUpdate) {
         ${changeClassName}Service.update(forUpdate);
     }
 

@@ -18,13 +18,6 @@ import ${package}.repository.entity.${className};
 import ${package}.service.${className}Service;
 import ${package}.domain.dto.*;
 import ${package}.service.mapstruct.${className}Mapper;
-<#if !auto && pkColumnType = 'Long'>
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.util.IdUtil;
-</#if>
-<#if !auto && pkColumnType = 'String'>
-import cn.hutool.core.util.IdUtil;
-</#if>
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

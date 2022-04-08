@@ -26,6 +26,7 @@ import static me.star.utils.FileUtil.SYS_TEM_DIR;
  */
 public class GenUtil {
     private static final String TIMESTAMP = "Timestamp";
+    private static final String LOCALDATETIME = "LocalDateTime";
 
     private static final String BIGDECIMAL = "BigDecimal";
 
@@ -202,6 +203,10 @@ public class GenUtil {
             // 是否存在 Timestamp 类型的字段
             if (TIMESTAMP.equals(colType)) {
                 genMap.put("hasTimestamp", true);
+            }
+            // 是否存在 Timestamp 类型的字段
+            if (LOCALDATETIME.equals(colType)) {
+                genMap.put("hasLocalDateTime", true);
             }
             // 是否存在 BigDecimal 类型的字段
             if (BIGDECIMAL.equals(colType)) {

@@ -1,6 +1,6 @@
 package ${package}.repository;
 
-import ${package}.domain.${className};
+import ${package}.repository.entity.${className};
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 * @date ${date}
 **/
 public interface ${className}Repository extends JpaRepository<${className}, ${pkColumnType}>, JpaSpecificationExecutor<${className}> {
+
 <#if columns??>
     <#list columns as column>
         <#if column.columnKey = 'UNI'>

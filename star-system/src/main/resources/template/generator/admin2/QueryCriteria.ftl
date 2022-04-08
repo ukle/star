@@ -20,7 +20,7 @@ import cn.hf.boot.web.annotation.Query;
 * @date ${date}
 **/
 @Data
-public class ${className}QueryCriteria{
+public class ${className}QueryCriteria {
 <#if queryColumns??>
     <#list queryColumns as column>
 
@@ -78,4 +78,5 @@ public class ${className}QueryCriteria{
 
     </#list>
 </#if>
+
 }

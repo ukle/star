@@ -3,7 +3,6 @@ package ${package}.service;
 import ${package}.domain.dto.*;
 import cn.hf.boot.web.PageResult;
 import org.springframework.data.domain.Pageable;
-import cn.hf.fuda.activity.service.dto.${className}QueryCriteria;
 
 import java.util.List;
 
